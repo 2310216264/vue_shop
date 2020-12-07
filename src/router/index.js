@@ -19,10 +19,27 @@ const routes = [
   },
   {
     path: '/home',
-    name: 'login',
-    component: () => import(/* webpackChunkName: "about" */ '../components/Home.vue')
+    name: 'home',
+    redirect:'/welcome',
+    component: () => import('../view/Home').catch(error=>{
+      console.log(error)
+    }),
+    children:[
+      {
+        path:'/welcome',
+        name:'welcome',
+        component: () => import('../components/Home/welcome.vue'),
+      },
+      {
+        path:'/users',
+        name:'users',
+        component: () => import('../components/users/users.vue'),
+      }
+    ]
   },
 ]
+
+//push 
 
 const router = new VueRouter({
   routes

@@ -1,11 +1,7 @@
 import Vue from 'vue'
-import { Button,Form,FormItem,Input,Message } from 'element-ui'
+import Element, { Message, MessageBox } from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
+Vue.use(Element)
 
-Vue.use(Button)
-.use(Form)
-.use(FormItem)
-.use(Input)
-// .use(Message)
-
-Vue.prototype.$message = Message
+Vue.prototype.$confrim = MessageBox.confirm

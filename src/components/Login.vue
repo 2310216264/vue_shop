@@ -39,6 +39,7 @@
       </el-form>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -87,6 +88,7 @@ export default {
           params: {
             username: this.loginFrom.username,
             password: this.loginFrom.passwrod,
+            token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjUwMCwicmlkIjowLCJpYXQiOjE2MDY2MTk2NjcsImV4cCI6MTYwNjcwNjA2N30.hZbvEgL2bzKSLV24ba3jIHsJ8wT2Eyq3lWcfsmzDXao"
           },
         })
           .then((value) => {
@@ -98,13 +100,11 @@ export default {
                 message: "登录成功",
                 type: "success",
               });
-              
               //跳转页面
               setTimeout(() => {
                 this.$router.replace("/home");
               }, 1000);
               window.sessionStorage.setItem("token", value.data.token);
-
             }
           })
           .catch((reson) => {

@@ -1,0 +1,10 @@
+src
+--components
+    --users
+        --bread 用户面包屑组件
+        --card  卡片内容组件 展示用户数据
+        --message 创建用户组件 添加用户时显示
+        --page   分页组件
+        --user   总组件
+        --userlist   用户内容
+        --edit    修改用户数据

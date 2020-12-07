@@ -1,16 +1,17 @@
 <template>
-  <div>
+  <el-header>
+    <div>
+      <img src="../assets/logo.png" alt="" />
+      <span>电商后台管理系统</span>
+    </div>
     <el-button @click="logout">退出</el-button>
-    Home 组件
-  </div>
+  </el-header>
 </template>
 
 <script>
 export default {
   data() {
-      return{
-          
-      }
+    return {};
   },
   methods: {
     logout() {
@@ -21,5 +22,6 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+
 </style>
