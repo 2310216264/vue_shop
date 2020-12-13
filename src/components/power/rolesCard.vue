@@ -2,7 +2,7 @@
   <div>
     <el-card class="card">
       <!-- 添加角色按钮 -->
-     <create :data="roleList"/>
+      <create :data="roleList" />
 
       <!-- 角色列表 -->
       <el-table :data="roleList" border stripe>
@@ -44,7 +44,7 @@
                       closable
                       type="warning"
                       v-for="(item3, i3) in item2.children"
-                      :key="item3.id"
+                      :key="i3"
                     >
                       {{ item2.authName }}
                     </el-tag>
@@ -54,14 +54,18 @@
             </el-row>
           </template>
         </el-table-column>
-        
+
         <!-- 索引列 -->
         <el-table-column label="#" type="index"></el-table-column>
         <el-table-column label="角色" prop="roleName"></el-table-column>
         <el-table-column label="角色描述" prop="roleDesc"></el-table-column>
         <el-table-column label="操作" width="300px">
           <template slot-scope="scope">
-            <el-button size="mini" type="primary" icon="el-icon-edit"
+            <el-button
+              size="mini"
+              @click="add"
+              type="primary"
+              icon="el-icon-edit"
               >编辑</el-button
             >
             <el-button
@@ -99,16 +103,35 @@
         <el-button type="primary" @click="allrights">确 定</el-button>
       </span>
     </el-dialog>
+
+    <!-- 编辑 -->
+    <el-dialog title="编辑角色" :visible.sync="dialogFormVisible">
+      <el-form :data = "roleList">
+        <el-form-item label="活动名称" >
+          <el-input :disabled="true" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <!-- 确定取消 对话框 -->
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false"
+          >确 定</el-button
+        >
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 // import setMessage from "./dilog.vue";
-import create from './create.vue'
+import create from "./create.vue";
 import { request } from "../../NetWork/request";
 export default {
   data() {
     return {
+
+      //对话框
+      dialogFormVisible :false,
       //所有角色列表数据
       roleList: [],
       setMessage: false,
@@ -141,6 +164,13 @@ export default {
         this.roleList = value.data;
       });
     },
+
+    //对话框
+    add(){
+      this.dialogFormVisible = true
+      console.log(this.roleList)
+    },
+
 
     //根据id删除权限
     remove(role, rightid) {
@@ -219,7 +249,7 @@ export default {
         },
       })
         .then((value) => {
-          this.setMessage=false
+          this.setMessage = false;
           console.log(value);
         })
         .catch((reson) => {
@@ -256,9 +286,9 @@ export default {
     },
   },
 
-  components:{
-    create
-  }
+  components: {
+    create,
+  },
 };
 </script>
 
@@ -279,5 +309,4 @@ export default {
   display: flex;
   align-items: center;
 }
-
 </style>
