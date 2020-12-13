@@ -4,7 +4,7 @@
       <el-row :gutter="20">
         
         <el-col :span="7">
-          <el-input v-model="this.$store.state.queryInfo.query"></el-input>
+          <!-- <el-input v-model="this.$store.state.queryInfo.query"></el-input> -->
           <el-button slot="append"  icon="el-icon-search"></el-button>
         </el-col>
         <el-col :span="6">

@@ -13,36 +13,10 @@
         ></el-switch>
       </template>
     </el-table-column>
-    <el-table-column label="操作">
-      <template v-slot="scope">
-        <!-- 修改 -->
-        <el-button
-          type="primary"
-          icon="el-icon-edit"
-          @click="edit"
-          circle
-        ></el-button>
-        <!-- 删除 -->
-        <el-button
-          type="danger"
-          icon="el-icon-delete"
-          @click="remove(scope.row.id)"
-          circle
-        ></el-button>
-        <!-- 分配 -->
-        <el-tooltip
-          effect="dark"
-          content="分配角色"
-          placement="top"
-          :enterable="false"
-        >
-          <el-button type="warning" icon="el-icon-setting" circle></el-button>
-        </el-tooltip>
-      </template>
-    </el-table-column>
+    
 
     <!-- 修改角色 -->
-    <el-dialog title="提示" :visible.sync="dialogVisible" width="30%">
+    <el-dialog title="分配角色" :visible.sync="dialogVisible" width="50%">
       <span>这是一段信息</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
@@ -61,6 +35,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      //控制分配角色对话框显示与隐藏
       dialogVisible: false,
     };
   },
@@ -86,7 +61,7 @@ export default {
           this.$message.error("更新失败");
         });
     },
-    edit() {
+    setRole() {
       this.dialogVisible = true;
     },
     //删除用户
